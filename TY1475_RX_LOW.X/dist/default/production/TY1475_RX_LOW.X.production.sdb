@@ -11,39 +11,39 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"204 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"218 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _Exception_handling Exception_handling `(v  1 e 1 0 ]
-"216
+"230
 [v _LED_output LED_output `(v  1 e 1 0 ]
-"337
+"351
 [v _check_input check_input `(v  1 e 1 0 ]
-"379
+"393
 [v _getFrameData getFrameData `(v  1 e 1 0 ]
-"445
+"459
 [v _ECCP3_CallBack ECCP3_CallBack `(v  1 e 1 0 ]
-"519
+"533
 [v _TMR0_EvenHandler TMR0_EvenHandler `(v  1 e 1 0 ]
-"530
+"544
 [v _main main `(v  1 e 1 0 ]
-"59 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
+"59 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
 [v _ECCP3_Initialize ECCP3_Initialize `(v  1 e 1 0 ]
 "80
 [v _ECCP3_CaptureISR ECCP3_CaptureISR `(v  1 e 1 0 ]
-"64 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
+"64 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
 [v _EPWM2_Initialize EPWM2_Initialize `(v  1 e 1 0 ]
 "90
 [v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
-"52 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/interrupt_manager.c
+"52 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"50 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
+"50 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 "63
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "77
 [v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
-"55 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/pin_manager.c
+"55 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"64 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
+"64 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
 "108
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
@@ -53,11 +53,11 @@
 [v _TMR0_SetInterruptHandler TMR0_SetInterruptHandler `(v  1 e 1 0 ]
 "144
 [v _TMR0_DefaultInterruptHandler TMR0_DefaultInterruptHandler `(v  1 e 1 0 ]
-"63 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
+"63 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
 "113
 [v _TMR1_WriteTimer TMR1_WriteTimer `(v  1 e 1 0 ]
-"62 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr2.c
+"62 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 [s S62 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
@@ -287,15 +287,15 @@
 [v _CCP3CON CCP3CON `VEuc  1 e 1 @787 ]
 "8074
 [v _PLLR PLLR `VEb  1 e 0 @1238 ]
-"97 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"105 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _rx_data rx_data `uc  1 e 1 0 ]
-"98
+"106
 [v _data_1byte_OK data_1byte_OK `VEa  1 e 1 0 ]
-"99
+"107
 [v _fFrame_OK fFrame_OK `a  1 e 1 0 ]
-"100
+"108
 [v _data_buf data_buf `[11]uc  1 e 11 0 ]
-"101
+"109
 [v _step step `uc  1 e 1 0 ]
 [s S561 . 1 `a 1 b0 1 0 :1:0 
 `a 1 b1 1 0 :1:1 
@@ -306,7 +306,7 @@
 `a 1 b6 1 0 :1:6 
 `a 1 b7 1 0 :1:7 
 ]
-"103
+"111
 [u S570 . 1 `S561 1 . 1 0 `uc 1 Byte 1 0 ]
 [v _D2 D2 `S570  1 e 1 0 ]
 [s S573 . 1 `a 1 b0 1 0 :1:0 
@@ -318,7 +318,7 @@
 `a 1 turnLight_R 1 0 :1:6 
 `a 1 b7 1 0 :1:7 
 ]
-"104
+"112
 [u S582 . 1 `S573 1 . 1 0 `uc 1 Byte 1 0 ]
 [v _D3 D3 `S582  1 e 1 0 ]
 [s S585 . 1 `a 1 turnLight_R 1 0 :1:0 
@@ -330,39 +330,39 @@
 `a 1 b6 1 0 :1:6 
 `a 1 b7 1 0 :1:7 
 ]
-"105
+"113
 [u S594 . 1 `S585 1 . 1 0 `uc 1 Byte 1 0 ]
 [v _csFlag csFlag `S594  1 e 1 0 ]
-"107
+"115
 [v _T10MS_CNT T10MS_CNT `VEuc  1 e 1 0 ]
-"109
+"117
 [v _fException fException `a  1 e 1 0 ]
-"110
+"118
 [v _fException2 fException2 `a  1 e 1 0 ]
-"119
+"133
 [v _CS CS `[64]uc  1 s 64 CS ]
-"58 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
+"58 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
 "59
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
-"57 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
+"57 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
-"530 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"544 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"572
+"586
 } 0
-"379
+"393
 [v _getFrameData getFrameData `(v  1 e 1 0 ]
 {
-"443
+"457
 } 0
-"337
+"351
 [v _check_input check_input `(v  1 e 1 0 ]
 {
-"377
+"391
 } 0
-"50 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
+"50 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
 "61
@@ -372,17 +372,17 @@
 {
 "81
 } 0
-"62 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr2.c
+"62 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
 {
 "77
 } 0
-"63 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
+"63 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr1.c
 [v _TMR1_Initialize TMR1_Initialize `(v  1 e 1 0 ]
 {
 "84
 } 0
-"64 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
+"64 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
 {
 "85
@@ -393,52 +393,52 @@
 [v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
 "142
 } 0
-"55 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/pin_manager.c
+"55 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "97
 } 0
-"63 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
+"63 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
 "75
 } 0
-"64 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
+"64 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
 [v _EPWM2_Initialize EPWM2_Initialize `(v  1 e 1 0 ]
 {
 "88
 } 0
-"59 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
+"59 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
 [v _ECCP3_Initialize ECCP3_Initialize `(v  1 e 1 0 ]
 {
 "78
 } 0
-"216 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"230 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _LED_output LED_output `(v  1 e 1 0 ]
 {
-"319
+"333
 [v LED_output@i i `uc  1 a 1 6 ]
-"217
+"231
 [v LED_output@crc8 crc8 `uc  1 a 1 5 ]
-"335
+"349
 } 0
-"204
+"218
 [v _Exception_handling Exception_handling `(v  1 e 1 0 ]
 {
-"214
+"228
 } 0
-"90 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
+"90 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/epwm2.c
 [v _EPWM2_LoadDutyValue EPWM2_LoadDutyValue `(v  1 e 1 0 ]
 {
 [v EPWM2_LoadDutyValue@dutyValue dutyValue `us  1 p 2 0 ]
 "97
 } 0
-"52 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/interrupt_manager.c
+"52 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
 "74
 } 0
-"108 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
+"108 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
 {
 "110
@@ -455,12 +455,12 @@
 {
 "147
 } 0
-"519 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"533 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _TMR0_EvenHandler TMR0_EvenHandler `(v  1 e 1 0 ]
 {
-"525
+"539
 } 0
-"80 D:\yiming\work\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
+"80 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\mcc_generated_files/eccp3.c
 [v _ECCP3_CaptureISR ECCP3_CaptureISR `(v  1 e 1 0 ]
 {
 [s S492 . 2 `uc 1 ccpr3l 1 0 `uc 1 ccpr3h 1 1 ]
@@ -470,29 +470,29 @@
 [v ECCP3_CaptureISR@module module `S497  1 a 2 4 ]
 "93
 } 0
-"445 D:\yiming\work\TY1475_RX_LOW.X\main.c
+"459 D:\yiming\github\TY1475_RX_LOW\TY1475_RX_LOW.X\main.c
 [v _ECCP3_CallBack ECCP3_CallBack `(v  1 e 1 0 ]
 {
 [v ECCP3_CallBack@capturedValue capturedValue `us  1 p 2 0 ]
-"446
+"460
 [v ECCP3_CallBack@pluse_width_LO pluse_width_LO `us  1 s 2 pluse_width_LO ]
-"447
+"461
 [v ECCP3_CallBack@pluse_width_HI pluse_width_HI `us  1 s 2 pluse_width_HI ]
-"448
+"462
 [v ECCP3_CallBack@HI_us HI_us `uc  1 s 1 HI_us ]
-"449
+"463
 [v ECCP3_CallBack@LO_us LO_us `uc  1 s 1 LO_us ]
-"450
+"464
 [v ECCP3_CallBack@diff_us diff_us `uc  1 s 1 diff_us ]
-"451
+"465
 [v ECCP3_CallBack@falling_edge_time falling_edge_time `us  1 s 2 falling_edge_time ]
-"452
+"466
 [v ECCP3_CallBack@rising_edge_time rising_edge_time `us  1 s 2 rising_edge_time ]
-"453
+"467
 [v ECCP3_CallBack@rise_edge_flag rise_edge_flag `a  1 s 1 rise_edge_flag ]
-"454
+"468
 [v ECCP3_CallBack@fHead fHead `a  1 s 1 fHead ]
-"455
+"469
 [v ECCP3_CallBack@data_cnt data_cnt `uc  1 s 1 data_cnt ]
-"517
+"531
 } 0

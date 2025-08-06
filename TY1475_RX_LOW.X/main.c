@@ -48,7 +48,14 @@
 // 2.遠燈+晝行, 晝行(忽略遠燈信號)
 // 3.遠燈+行車, 行車(忽略遠燈信號)
 // 4.遠燈+近燈, 遠燈
-// 搭配//20280801 TY1014_TX V02 CS:2556使用
+// 搭配TY1014_TX V02 CS:2556使用
+// 5.遠燈&近燈&晝行 同一光源 遠燈&近燈 PWM 100% 晝行 PWM 40%
+// 6.電磁閥(開) 遠燈, (關) 近燈
+
+// 20250505 TY1475_RX_LOW V02 CS:413C
+// 修正行車信號 P2_ON 功能
+// 修正LoBeam程式 增加程式可讀性
+
 
 #include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/pin_manager.h"
@@ -111,8 +118,14 @@ bool fException = 0;
 bool fException2 = 0;
 
 #define LOGIC_LEVEL (16)
-#define HiBeam_OFF() HB_EN_SetLow()
 #define HiBeam_ON() HB_EN_SetHigh()
+#define HiBeam_OFF() HB_EN_SetLow()
+#define LoBeam_ON() EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
+#define LoBeam_OFF() EPWM2_LoadDutyValue(PWM2_DUTY_0_PERCENT);  // PWM 0%
+#define DRL_ON() EPWM2_LoadDutyValue(PWM2_DUTY_40_PERCENT);     // PWM 40%
+#define P2_ON() P2_EN_SetHigh()
+#define P2_OFF() P2_EN_SetLow()
+
 #define PWM2_DUTY_40_PERCENT (199)
 #define PWM2_DUTY_100_PERCENT (499)
 #define PWM2_DUTY_0_PERCENT (0)
@@ -228,94 +241,94 @@ void LED_output(void) {
   T10MS_CNT = 0; // 重置2000ms計數器
 
   // 行車
-  // if (csFlag.RunLight == 1) {
-  //   P2_EN_SetHigh();
-  // } else {
-  //   P2_EN_SetLow();
-  // }
-
-  if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 0) { // 0
-    // ALL OFF = HIBEAM OFF (LED OFF)
-    P2_EN_SetLow();
-    HiBeam_OFF();                             // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_0_PERCENT); // PWM 0%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 1) { // 1
-    // DRL = DRL
-    P2_EN_SetLow();
-    HiBeam_OFF();                              // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_40_PERCENT); // PWM 40%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 0) { // 2
-    // 行車OFF + HiBeam = 電磁閥測試(開)(KD件) (LED OFF)
-    P2_EN_SetLow();
-    HiBeam_ON();                              // 遠燈 ON
-    EPWM2_LoadDutyValue(PWM2_DUTY_0_PERCENT); // PWM 0%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 1) { // 3
-    // HiBeam + DRL = DRL(此時Hibeam信號無效-KD件)
-    P2_EN_SetLow();
-    HiBeam_OFF();                              // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_40_PERCENT); // PWM 40%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 0) { // 4
-    // LOBEAM = LOBEAM
-    P2_EN_SetLow();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 1) { // 5
-    // LOBEAM + DRL = LOBEAM
-    P2_EN_SetLow();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 0) { // 6
-    // LOBEAM + HIBEAM = HIBEAM
-    P2_EN_SetLow();
-    HiBeam_ON();                                // 遠燈 ON
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 1) { // 7
-    // LOBEAM + HIBEAM + DRL = HIBEAM
-    P2_EN_SetLow();
-    HiBeam_ON();                                // 晝行+超車
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 0) { // 8
-    // 行車 電磁閥(關)
-    P2_EN_SetHigh();
-    HiBeam_OFF();                              // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_0_PERCENT); // PWM 0%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 1) { // 9
-    // 行車 + DRL = 行車 + DRL
-    P2_EN_SetHigh();
-    HiBeam_OFF();                              // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_40_PERCENT); // PWM 40%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 0) { // 10
-    // 行車 + HIBEAM = 行車(此時Hibeam信號無效-KD件)
-    P2_EN_SetHigh();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_0_PERCENT); // PWM 0%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 1) { // 11
-    // 行車 + HIBEAM + DRL = 行車 + DRL(此時Hibeam信號無效-KD件)
-    P2_EN_SetHigh();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_40_PERCENT); // PWM 40%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 0) { // 12
-    // 行車 + LOBEAM = 行車 + LOBEAM
-    P2_EN_SetHigh();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 1) { // 13
-    // 行車 + LOBEAM + DRL = 行車 + LOBEAM
-    P2_EN_SetHigh();
-    HiBeam_OFF();                               // 遠燈 OFF
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 0) { // 14
-    // 行車 + HIBEAM + LOBEAM = 行車 + HIBEAM
-    P2_EN_SetHigh();
-    HiBeam_ON();                                // 遠燈 ON
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 1) { // 15
-    // 行車 + HIBEAM + LOBEAM + DRL = 行車 + HIBEAM
-    P2_EN_SetHigh();
-    HiBeam_ON();                                // 遠燈 ON
-    EPWM2_LoadDutyValue(PWM2_DUTY_100_PERCENT); // PWM 100%
+  if (csFlag.RunLight == 1) {
+    P2_ON();
+  } else {
+    P2_OFF();
   }
 
+  if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+      csFlag.DRL == 0) { // 0
+    // 行車OFF + 晝行OFF + 近燈OFF + 遠燈OFF = 電磁閥測試(關)(KD件) (LED OFF)
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_OFF(); // 近燈 OFF
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) { // 1
+    // DRL = DRL
+    HiBeam_OFF(); // 遠燈 OFF
+    DRL_ON();     // 晝行 ON
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) { // 2
+    // 行車OFF + HiBeam = 電磁閥測試(開)(KD件) (LED OFF)
+    HiBeam_ON();  // 遠燈 ON
+    LoBeam_OFF(); // 近燈 OFF
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) { // 3
+    // HiBeam + DRL = DRL(此時Hibeam信號無效-KD件)
+    HiBeam_OFF(); // 遠燈 OFF
+    DRL_ON();     // 晝行 ON
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) { // 4
+    // LOBEAM = LOBEAM
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_ON();  // 近燈 ON
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) { // 5
+    // LOBEAM + DRL = LOBEAM
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_ON();  // 近燈 ON
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) { // 6
+    // LOBEAM + HIBEAM = HIBEAM + LOBEAM
+    HiBeam_ON(); // 遠燈 ON
+    LoBeam_ON(); // 近燈 ON
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) { // 7
+    // LOBEAM + HIBEAM + DRL = HIBEAM
+    HiBeam_ON(); // 晝行+超車
+    LoBeam_ON(); // 近燈 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) { // 8
+    // 行車 電磁閥(關)
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_OFF()
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) { // 9
+    // 行車 + DRL = 行車 + DRL
+    HiBeam_OFF(); // 遠燈 OFF
+    DRL_ON();     // 晝行 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) { // 10
+    // 行車 + HIBEAM = 行車(此時Hibeam信號無效-KD件)
+    P2_EN_SetHigh();
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_OFF(); // 近燈 OFF
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) { // 11
+    // 行車 + HIBEAM + DRL = 行車 + DRL(此時Hibeam信號無效-KD件)
+    HiBeam_OFF(); // 遠燈 OFF
+    DRL_ON();     // 晝行 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) { // 12
+    // 行車 + LOBEAM = 行車 + LOBEAM
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_ON();  // 近燈 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) { // 13
+    // 行車 + LOBEAM + DRL = 行車 + LOBEAM
+    HiBeam_OFF(); // 遠燈 OFF
+    LoBeam_ON();  // 近燈 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) { // 14
+    // 行車 + HIBEAM + LOBEAM = 行車 + HIBEAM + LOBEAM
+    HiBeam_ON(); // 遠燈 ON
+    LoBeam_ON(); // 近燈 ON
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) { // 15
+    // 行車 + HIBEAM + LOBEAM + DRL = 行車 + HIBEAM + LOBEAM
+    HiBeam_ON(); // 遠燈 ON
+    LoBeam_ON(); // 近燈 ON
+  }
 
   for (uint8_t i = 0; i < 11; i++) {
     data_buf[i] = 0; // 清除資料緩衝區

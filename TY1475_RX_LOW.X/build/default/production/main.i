@@ -7,7 +7,7 @@
 # 1 "C:/Users/t00904/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 52 "main.c"
+# 60 "main.c"
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "C:/Users/t00904/.mchp_packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\\pic\\include\\xc.h" 1 3
@@ -5191,7 +5191,7 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 100 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 52 "main.c" 2
+# 60 "main.c" 2
 
 
 
@@ -5251,7 +5251,7 @@ volatile uint8_t T10MS_CNT = 0;
 
 _Bool fException = 0;
 _Bool fException2 = 0;
-# 119 "main.c"
+# 133 "main.c"
 static uint8_t CS[64] = {
 
     0x4C,
@@ -5361,94 +5361,101 @@ void LED_output(void) {
 
 
   T10MS_CNT = 0;
-# 236 "main.c"
-  if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 0) {
 
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((0));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 1) {
 
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((199));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 1; } while(0);
-    EPWM2_LoadDutyValue((0));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((199));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 1; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 0; } while(0);
-    do { LATAbits.LATA0 = 1; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 0) {
-
+  if (csFlag.RunLight == 1) {
     do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((0));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((199));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((0));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((199));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 0; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 0) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 1; } while(0);
-    EPWM2_LoadDutyValue((499));
-  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 && csFlag.DRL == 1) {
-
-    do { LATAbits.LATA3 = 1; } while(0);
-    do { LATAbits.LATA0 = 1; } while(0);
-    EPWM2_LoadDutyValue((499));
+  } else {
+    do { LATAbits.LATA3 = 0; } while(0);
   }
 
+  if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+      csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((0));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((199));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 1; } while(0);
+    EPWM2_LoadDutyValue((0));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((199));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 1; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 0 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 1; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((0));
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((199));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA3 = 1; } while(0);
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((0));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 0 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((199));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 0 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 0; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 0) {
+
+    do { LATAbits.LATA0 = 1; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  } else if (csFlag.RunLight == 1 && csFlag.LoBeam == 1 && csFlag.HiBeam == 1 &&
+             csFlag.DRL == 1) {
+
+    do { LATAbits.LATA0 = 1; } while(0);
+    EPWM2_LoadDutyValue((499));;
+  }
 
   for (uint8_t i = 0; i < 11; i++) {
     data_buf[i] = 0;
   }
-# 335 "main.c"
+# 349 "main.c"
 }
 
 void check_input(void) {
